@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_digizilla,digizilla.digizilla_default,model_digizilla_digizilla,,1,1,1,1
+acl_digizilla_tags,digizilla.tags_default,model_digizilla_tags,,1,1,1,1

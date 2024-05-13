@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id = 'digizlla_action' model='ir.actions.act_window'>
+        <field name ='name'>Digizilla</field>
+        <field name='res_model'>digizilla.digizilla</field>
+        <field name='view_mode'>tree,kanban,form</field>
+    </record>
+
+    <menuitem id='digizilla_menu' name='Digizilla'/>
+    <menuitem id='digizilla_digizilla' action='digizlla_action' parent='digizilla_menu'/>
+
+
+    <record id='digizilla_tree_view' model='ir.ui.view'>
+        <field name='name'>Digizilla View</field>
+        <field name='model'>digizilla.digizilla</field>
+        <field name='arch' type='xml'>
+            <tree>  
+                <field name='name'/>
+                <field name='gender'/>
+                <field name='joining_date'/>
+                <field name='customers'/>
+                <field name='country'/>
+                <field name='tags'/>
+                <field name='company'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='digizilla_form' model='ir.ui.view'>
+        <field name='name'>Digizilla Form</field>
+        <field name='model'>digizilla.digizilla</field>
+        <field name='arch' type='xml'>
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='name'/>
+                            <field name='gender'/>
+                            <field name='joining_date'/>
+                            <field name='customers' widget='many2many_tags'/>
+                        </group>
+                        <group>
+                            <field name='country'/>
+                            <field name='tags' widget='many2many_tags'/>
+                            <field name='company'/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name='Notes'>
+                            <group>
+                                <field name='notes'/>
+                            </group>
+                        </page>
+                        <page name='Comments'>
+                            <group>
+                                <field name='comments'/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class='oe_chatter'>
+                    <field name='message_follower_ids'/>
+                    <field name='message_ids'/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digizilla_digizilla_kanban" model="ir.ui.view">
+            <field name="name">digizilla.digizilla.kanban</field>
+            <field name="model">digizilla.digizilla</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by='tags' >
+                    <field name="name"/>
+                    <field name='gender'/>
+                    <field name='joining_date'/>
+                    <field name='country'/>
+                    <field name='company'/>
+                    <field name='tags'/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong> Name : </strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong><span t-esc="record.name.value"/></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong> Gender : </strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong><span t-esc="record.gender.value"/></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong> Joining Date : </strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong><span t-esc="record.joining_date.value"/></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong> Country : </strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong><span t-esc="record.country.value"/></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong> Company : </strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <strong><span t-esc="record.company.value"/></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+</odoo>
